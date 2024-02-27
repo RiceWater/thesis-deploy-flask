@@ -25,10 +25,13 @@ def upload_file():
     image = read_image(f.read())
     image = preprocess_image(image)
     img_class = predict_image(image)
-    return {"Class": img_class}
+    return img_class
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS 
 
-
+# ========================================================================
+# ngrok http --domain=ideal-modest-gazelle.ngrok-free.app <port_number>   
+# <port_number> is the port from localhost or the port you are letting it listen to
+# ========================================================================
