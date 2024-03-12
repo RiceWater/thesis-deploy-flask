@@ -8,7 +8,7 @@ import numpy as np
 
 INPUT_SHAPE = (256,256)
 
-model = tf.keras.models.load_model('model\Model_V4-0-0.keras')
+model = tf.keras.models.load_model('model\Model_V4-0-1.keras')
 
 def read_image(image_encoded):
     pil_image = Image.open(BytesIO(image_encoded)).convert('RGB')
@@ -22,5 +22,5 @@ def preprocess_image(image: Image.Image):
 def predict_image(image: np.ndarray):
     y = model.predict(image)
     y = np.argmax(y)
-    img_class = "Road" if y == 3 else "Not Road"
+    img_class = "Road" if y == 2 else "Not Road"
     return img_class
