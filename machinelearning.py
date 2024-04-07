@@ -8,7 +8,7 @@ import numpy as np
 
 INPUT_SHAPE = (256,256)
 
-model = tf.keras.models.load_model('model\Model_V4-0-1.keras')
+model = tf.keras.models.load_model('model\PCNN0206_01B.keras') # This is Final-Model_4-0-1.keras
 
 def read_image(image_encoded):
     pil_image = Image.open(BytesIO(image_encoded)).convert('RGB')
