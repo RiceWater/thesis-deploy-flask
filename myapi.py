@@ -1,6 +1,7 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask import request
 from werkzeug.utils import secure_filename
+
 
 from machinelearning import preprocess_image, read_image, predict_image
 
@@ -11,11 +12,13 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def hello_world():
-    return {"Message" : "Service online!"}
+    data = {"Message" : "Service online!"}
+    return jsonify(data)
+    # return {"Message" : "Service online!"}
 
 @app.route("/upload", methods=["POST"])
 def upload_file():
-    f = request.files["file"]
+    f = request.files["file"] 
     if f.filename == '':
         return "No file selected"
     if not allowed_file(f.filename):
