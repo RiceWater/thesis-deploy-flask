@@ -37,10 +37,13 @@ def predict_image(image: np.ndarray):
     y_ini = ini_model.predict(image)
     y_ini_max = np.argmax(y_ini)
     ini_class = "Issue" if y_ini_max == 1 else "Not Issue"
+    y_ini_list = [float(y_ini[0][0]), float(y_ini[0][1])]
+    ini_labels = ["Not Issue", "Issue"]
     response = {
-            "class" : ini_class,
-            "accuracy": y_ini,
-            "ini_labels": "['Not Issue','Issue']",
+            "class" : ini_class, # String
+            "rnr_class": img_class, # String
+            "accuracy":  y_ini_list, # List of floats           If failed, convert to string
+            "ini_labels": ini_labels, # List of strings         If failed, convert to string
             }
     
     return jsonify(response)
