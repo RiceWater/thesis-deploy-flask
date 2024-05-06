@@ -11,9 +11,9 @@ import numpy as np
 INPUT_SHAPE = (256,256)
 
 # model = tf.keras.models.load_model('model\PCNN0206_01B.keras') # This is Final-Model_4-0-1.keras
-rnr_model = tf.keras.models.load_model('model\\RNR\\Old\\Model_V4-0-1.keras') # This is used since it performed slightly better during actual deployment
+# rnr_model = tf.keras.models.load_model('model\\RNR\\Old\\Model_V4-0-1.keras') # This is used since it performed slightly better during actual deployment
 # model = tf.keras.models.load_model('model\Experimental\Final-B4_1_3-converted.keras') #This is the binary model sir Josh suggested
-
+rnr_model = tf.keras.models.load_model('model\\RNR\\Final-B4_0_1-converted.keras')
 ini_model = tf.keras.models.load_model('model\\INI\\Final-Adr-INI-5_1_1-converted.keras')
 
 def read_image(image_encoded):
@@ -28,7 +28,7 @@ def preprocess_image(image: Image.Image):
 def predict_image(image: np.ndarray):
     y_rnr = rnr_model.predict(image)
     y_rnr_max = np.argmax(y_rnr)
-    img_class = "Road" if y_rnr_max == 2 else "Not Road"
+    img_class = "Road" if y_rnr_max == 1 else "Not Road"
 
     if img_class != "Road":
         response = {"class" : img_class}
